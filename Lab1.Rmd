@@ -1,0 +1,62 @@
+---
+title: "Lab1"
+output: html_document
+date: "2022-10-07"
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+##1. Створити змінні базових (atomic) типів. Базові типи: character, numeric, integer, complex, logical.
+char <- 'this is character'
+num <- 10.0
+int <- 5L
+comp <- 5 + 7i
+bool <- TRUE
+
+
+##2. Створити вектори, які: містить послідовність з 5 до 75; містить числа 3.14, 2.71, 0, 13; 100 значень TRUE.
+x_vec <- c(5:75)
+y_vec <- c(3.14,27.1,0,13)
+a_vec <- rep(c(TRUE), 100)
+
+
+##3. Створити наступну матрицю за допомогою matrix, та за допомогою cbindабо rbind
+vec_matrix <- c(0.5, 1.3, 3.5, 3.9, 131, 2.8, 0, 2.2, 4.6, 2, 7, 5.1)
+matrix(data = vec_matrix, nrow = 4, ncol = 3, byrow = TRUE)
+
+a <- c(0.5, 1.3, 3.5, 3.9)
+b <- c(131, 2.8, 0, 2.2)
+c <- c(4.6, 2, 7, 5.1)
+rbind(a,b,c)
+
+
+##4. Створити довільний список (list), в який включити всі базові типи.
+pin <- list(char, num, int, comp, bool)
+
+
+##5. Створити фактор з трьома рівнями «baby», «child», «adult».
+fact <- factor(c("adult", "child", "baby", "baby", "child", "adult"), levels = c("adult", "child", "baby"))
+
+
+##6. Знайти індекс першого значення NA в векторі 1, 2, 3, 4, NA, 6, 7, NA, 9, NA, 11. Знайти кількість значень NA.
+NA_vec <- c(1, 2, 3, 4, NA, 6, 7, NA, 9, NA, 11)
+counter <- 0
+for (i in NA_vec) {
+  if(is.na(i)) {
+    counter <- counter + 1
+    print(counter)
+  }
+}
+
+
+##7. Створити довільний data frame та вивести в консоль.
+
+dataframe <- data.frame (row1 = c("Apples","Watermelons", "Peaches", "Lemons", "Oranges"), row2 = c(2,4,6,1,5))
+dataframe
+
+
+##8. Змінити імена стовпців цього data frame.
+colnames(dataframe)[1] <- "products"
+colnames(dataframe)[2] <- "quantity"
+dataframe
+```
