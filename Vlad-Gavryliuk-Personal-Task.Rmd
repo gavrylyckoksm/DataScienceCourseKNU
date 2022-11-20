@@ -1,0 +1,72 @@
+---
+title: "Gavryliuk Vlad Personal Task"
+output: html_document
+date: "2022-11-20"
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#Task 1-2 dataset description units + data reading
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+
+#set my new working directory
+setwd("D:/Git repository/DataScienceCourseKNU") 
+getwd()
+
+#divide one file as two separeted to show merging by using rbind command
+#data reading
+#diabet <- read.csv("D:/Git repository/DataScienceCourseKNU/diabetes.csv")
+diabet1 <- read.csv("D:/Git repository/DataScienceCourseKNU/diabetes 1.csv")
+diabet2 <- read.csv("D:/Git repository/DataScienceCourseKNU/diabetes 2.csv")
+
+print(diabet1)
+print(diabet2)
+
+
+
+#Task 2 merging by row bind command
+a <- data.frame(diabet1)
+b <- data.frame(diabet2)
+diabet <- rbind(a, b)
+
+#show units which included inside of created dataframe
+str(diabet)
+
+
+#Task 3 data tidying
+#make explicit missing values implicit with
+drop_na(diabet)
+
+#set all null as NA
+diabet[diabet == 0] <- NA
+
+#filter all diabet NA`s`
+diabet %>%  
+  filter(if_any(everything(), is.na))
+#delete all data rows with NA
+na.omit(diabet) 
+print(diabet)
+
+#Task 4 created visualisation of graphics using data analyzing
+#created linechart 
+ggplot(data=diabet, aes(x=Age, y=Insulin, group=1)) +
+  geom_line(color="orange",size=1)+
+  geom_point(color="purple")
+
+#created barchart
+ggplot(data=diabet, aes(x=BMI, y=Glucose))+
+  geom_bar(stat="identity", color="red")+
+  scale_fill_manual(values=c("#999999", "#E69F00", "#56B4E9"))
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
